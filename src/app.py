@@ -2,6 +2,7 @@ from PIL import Image
 import pytesseract
 import base64
 from io import BytesIO
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
 
 def lambda_handler(event, context):
     """
@@ -22,12 +23,10 @@ def lambda_handler(event, context):
         img_b64dec = base64.b64decode(event['body'])
         # Create a BytesIO object from the decoded image data
         img_byteIO = BytesIO(img_b64dec)
-        # Open the image using PIL
+        # Open the image using PIL#
         image = Image.open(img_byteIO)
-
         # Perform OCR on the image using pytesseract
         extracted_text = pytesseract.image_to_string(image)
-
         # Return the extracted text as a response
         return {
             'text': extracted_text

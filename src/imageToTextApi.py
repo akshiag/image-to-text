@@ -7,7 +7,7 @@ app = Flask(__name__)
 def extract_text():
     try:
         # Get base64 encoded image from the request
-        image_data = request.data.decode('utf-8')
+        image_data = request.get_data()
         event = {'body' : image_data}
         extracted_text = lambda_handler(event, None)
 
