@@ -20,10 +20,8 @@ def lambda_handler(event, context):
     try:
         # Decode the base64 encoded image data
         img_b64dec = base64.b64decode(event['body'])
-
         # Create a BytesIO object from the decoded image data
         img_byteIO = BytesIO(img_b64dec)
-
         # Open the image using PIL
         image = Image.open(img_byteIO)
 
